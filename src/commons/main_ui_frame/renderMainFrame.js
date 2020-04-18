@@ -8,7 +8,9 @@ import NavBar from "../../commons/main_ui_frame/NavBar";
 export default function renderMainFrame(objects) {
     return (
         <div>
-            <UpperBar />
+            <div style={{ marginBottom: "20px" }}>
+                <UpperBar />
+            </div>
             <Grid container spacing={3}>
                 <Grid item xs={2}>
                     <NavBar />

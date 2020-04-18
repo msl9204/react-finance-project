@@ -14,7 +14,7 @@ export default function Dashboard() {
             <Grid item xs={2}>
                 <CompanyList />
             </Grid>
-            <Grid item xs={6} style={{ marginTop: "20px" }}>
+            <Grid item xs={6}>
                 <CanvasModule />
             </Grid>
             <Grid item xs={2}></Grid>

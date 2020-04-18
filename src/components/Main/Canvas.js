@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import CanvasJSReact from "../../assets/canvasjs.react";
 
 var CanvasJS = CanvasJSReact.CanvasJS;
@@ -26,8 +27,13 @@ class CanvasModule extends Component {
         this.updateChart = this.updateChart.bind(this);
     }
     componentDidMount() {
-        setInterval(this.updateChart, updateInterval);
+        this.unscribe = setInterval(this.updateChart, updateInterval);
     }
+
+    componentWillUnmount() {
+        clearInterval(this.unscribe);
+    }
+
     updateChart() {
         yVal = yVal + Math.round(5 + Math.random() * (-5 - 5));
         dps.push({ x: xVal, y: yVal });
