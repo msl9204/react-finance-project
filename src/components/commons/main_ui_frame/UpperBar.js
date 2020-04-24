@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getSearchValue } from "../../../_actions/CompanyFetch_action";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import TextField from "@material-ui/core/TextField";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
@@ -88,6 +90,9 @@ export default function UpperBar() {
     CompareWithList();
     const classes = useStyles();
     const dispatch = useDispatch();
+    const getCompanyList = useSelector(
+        (state) => state.company_reducer.company_data
+    );
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -191,21 +196,35 @@ export default function UpperBar() {
                         <div className={classes.searchIcon}>
                             <SearchIcon />
                         </div>
-                        <InputBase
-                            placeholder="Type Symbol…"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{ "aria-label": "search" }}
-                            onChange={(event) => {
-                                dispatch(
-                                    getSearchValue(
-                                        event.target.value.toUpperCase()
-                                    )
-                                );
-                            }}
-                        />
+                        {getCompanyList && (
+                            <Autocomplete
+                                className={classes.inputInput}
+                                freeSolo
+                                options={getCompanyList.map(
+                                    (option) => option.symbol
+                                )}
+                                onChange={(event) => {
+                                    dispatch(
+                                        getSearchValue(event.target.innerHTML)
+                                    );
+                                }}
+                                renderInput={(params) => (
+                                    <TextField
+                                        inputProps={{ "aria-label": "search" }}
+                                        {...params}
+                                        onKeyUp={(event) => {
+                                            if (event.keyCode === 13) {
+                                                dispatch(
+                                                    getSearchValue(
+                                                        event.target.value
+                                                    )
+                                                );
+                                            }
+                                        }}
+                                    />
+                                )}
+                            />
+                        )}
                     </div>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
