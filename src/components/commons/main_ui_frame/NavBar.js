@@ -23,7 +23,14 @@ export default function NavButtons() {
                 justify="space-evenly"
                 alignItems="center"
             >
-                <Grid item xs={12} style={{ marginTop: "50px" }}>
+                <Grid
+                    item
+                    xs={12}
+                    sm={12}
+                    md={12}
+                    lg={12}
+                    style={{ marginTop: "50px" }}
+                >
                     <Link to="/" style={{ textDecoration: "none" }}>
                         <Button
                             size="large"
@@ -34,7 +41,7 @@ export default function NavButtons() {
                         </Button>
                     </Link>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={12} md={12} lg={12}>
                     <Link to="/list" style={{ textDecoration: "none" }}>
                         <Button
                             size="large"
@@ -45,17 +52,19 @@ export default function NavButtons() {
                         </Button>
                     </Link>
                 </Grid>
-                <Grid item xs={12}>
-                    <Button variant="outlined" color="primary">
-                        News
-                    </Button>
+                <Grid item xs={12} sm={12} md={12} lg={12}>
+                    <Link to="/news" style={{ textDecoration: "none" }}>
+                        <Button variant="outlined" color="primary">
+                            News
+                        </Button>
+                    </Link>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={12} md={12} lg={12}>
                     <Button variant="outlined" color="primary">
                         Disabled
                     </Button>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={12} md={12} lg={12}>
                     <Button variant="outlined" color="primary">
                         Link
                     </Button>

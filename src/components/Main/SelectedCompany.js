@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -24,35 +25,39 @@ const useStyles = makeStyles({
     },
 });
 
-export default function CompanyList() {
+export default function SelectedCompany() {
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
+    const selected_company = useSelector(
+        (state) => state.search_value.selected_value.profile
+    );
 
     return (
-        <Card className={classes.root} variant="outlined">
+        <Card className={classes.root}>
             <CardContent>
                 <Typography
                     className={classes.title}
                     color="textSecondary"
                     gutterBottom
                 >
-                    Word of the Day
+                    {selected_company && selected_company.industry}
                 </Typography>
                 <Typography variant="h5" component="h2">
-                    be{bull}nev{bull}o{bull}lent
+                    {selected_company && selected_company.companyName}
+                </Typography>
+                <Typography variant="h6" component="h6">
+                    <strong>
+                        {selected_company && selected_company.price}
+                    </strong>
+                    {selected_company && selected_company.changes}
+                    {selected_company && selected_company.changesPercentage}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
-                    adjective
+                    {selected_company && selected_company.description}
                 </Typography>
                 <Typography variant="body2" component="p">
-                    well meaning and kindly.
-                    <br />
-                    {'"a benevolent smile"'}
+                    {selected_company && selected_company.sector}
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Button size="small">Learn More</Button>
-            </CardActions>
         </Card>
     );
 }

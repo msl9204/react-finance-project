@@ -1,13 +1,20 @@
-const request = require("request");
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import NewsBox from "./NewsBox";
+import renderMainFrame from "../commons/main_ui_frame/renderMainFrame";
+import { fetchNewsList } from "../../_actions/CompanyFetch_action";
 
-request(
-    "https://finnhub.io/api/v1/news?category=general&token=bq8njs7rh5rc96c0jpt0",
-    { json: true },
-    (err, res, body) => {
-        if (err) {
-            return console.log(err);
-        }
-        console.log(body.url);
-        console.log(body.explanation);
-    }
-);
+export default function RenderNews() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchNewsList());
+    }, [dispatch]);
+
+    const news_data = useSelector(
+        (state) => state.company_news.company_news,
+        []
+    );
+
+    return renderMainFrame(<NewsBox news_data={news_data} />);
+}

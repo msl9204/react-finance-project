@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getSearchValue } from "../../../_actions/CompanyFetch_action";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -14,6 +16,8 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import GetCompanySymbol from "../../Main/GetCompanySymbol";
+import CompareWithList from "../CompareWithList";
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -80,7 +84,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function UpperBar() {
+    GetCompanySymbol();
+    CompareWithList();
     const classes = useStyles();
+    const dispatch = useDispatch();
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -184,12 +192,19 @@ export default function UpperBar() {
                             <SearchIcon />
                         </div>
                         <InputBase
-                            placeholder="Search…"
+                            placeholder="Type Symbol…"
                             classes={{
                                 root: classes.inputRoot,
                                 input: classes.inputInput,
                             }}
                             inputProps={{ "aria-label": "search" }}
+                            onChange={(event) => {
+                                dispatch(
+                                    getSearchValue(
+                                        event.target.value.toUpperCase()
+                                    )
+                                );
+                            }}
                         />
                     </div>
                     <div className={classes.grow} />

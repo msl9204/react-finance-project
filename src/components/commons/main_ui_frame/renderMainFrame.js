@@ -1,9 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
-import UpperBar from "../../commons/main_ui_frame/UpperBar";
-import NavBar from "../../commons/main_ui_frame/NavBar";
+import UpperBar from "./UpperBar";
+import NavBar from "./NavBar";
 
 export default function renderMainFrame(objects) {
     return (
@@ -12,7 +10,7 @@ export default function renderMainFrame(objects) {
                 <UpperBar />
             </div>
             <Grid container spacing={3}>
-                <Grid item xs={2}>
+                <Grid item xs={2} sm={2} md={2} lg={2}>
                     <NavBar />
                 </Grid>
                 {/* 여기까지 상단 바랑 왼쪽 바 고정되는 부분*/}
