@@ -54,7 +54,11 @@ export default function NavButtons() {
                 </Grid>
                 <Grid item xs={12} sm={12} md={12} lg={12}>
                     <Link to="/news" style={{ textDecoration: "none" }}>
-                        <Button variant="outlined" color="primary">
+                        <Button
+                            size="large"
+                            variant="contained"
+                            color="primary"
+                        >
                             News
                         </Button>
                     </Link>

@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
 import { getInfo } from "../../_actions/CompanyFetch_action";
-import Axios from "axios";
 
 export default function CompareWithList() {
     const dispatch = useDispatch();

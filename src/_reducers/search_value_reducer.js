@@ -1,6 +1,10 @@
 const initialState = {
     search_value: null,
-    selected_value: { symbol: undefined, profile: undefined },
+    selected_value: {
+        symbol: undefined,
+        profile: undefined,
+        selected_key_metric: undefined,
+    },
 };
 
 export default function (state = initialState, action) {
@@ -12,6 +16,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 selected_value: action.payload,
+            };
+        case "SELECTED_KEY_METRIC":
+            return {
+                ...state,
+                selected_key_metric: action.payload,
             };
 
         default:

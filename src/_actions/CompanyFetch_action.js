@@ -1,5 +1,18 @@
 import Axios from "axios";
 
+export function getKeyMetric(symbol) {
+    const endpoint =
+        "https://financialmodelingprep.com/api/v3/company-key-metrics/" +
+        symbol;
+
+    const request = Axios.get(endpoint).then((response) => response.data);
+
+    return {
+        type: "SELECTED_KEY_METRIC",
+        payload: request,
+    };
+}
+
 export function getSearchValue(value) {
     return {
         type: "USER_SEARCH_VALUE",
@@ -9,11 +22,10 @@ export function getSearchValue(value) {
 
 export function getInfo(value) {
     const endpoint =
-        "https://financialmodelingprep.com/api/v3/company/profile/";
+        "https://financialmodelingprep.com/api/v3/company/profile/" +
+        value.symbol;
 
-    const request = Axios.get(endpoint + value.symbol).then(
-        (response) => response.data
-    );
+    const request = Axios.get(endpoint).then((response) => response.data);
 
     return {
         type: "SELECTED_VALUE",
