@@ -22,32 +22,38 @@ const useStyles = makeStyles({
     },
 });
 
+// 왜 Destructuring 하면 에러날까??
+
 export default function CompanyRating(props) {
     const classes = useStyles();
 
     return (
         <Card className={classes.root}>
             <CardContent>
-                <Typography
-                    className={classes.title}
-                    color="textSecondary"
-                    gutterBottom
-                >
-                    111
-                </Typography>
-                <Typography variant="h5" component="h2">
-                    222
-                </Typography>
-                <Typography variant="h6" component="h6">
-                    <strong>333</strong>
-                    444 555
-                </Typography>
-                <Typography className={classes.pos} color="textSecondary">
-                    666
-                </Typography>
-                <Typography variant="body2" component="p">
-                    777
-                </Typography>
+                {props.data.rating && (
+                    <>
+                        <Typography
+                            className={classes.title}
+                            color="textSecondary"
+                            gutterBottom
+                        >
+                            Rating
+                        </Typography>
+                        <Typography variant="h5" component="h2">
+                            recommendation :{props.data.rating.recommendation}
+                        </Typography>
+                        <Typography variant="h6" component="h6">
+                            <strong>Score : </strong>
+                            {props.data.rating.score}
+                        </Typography>
+                        <Typography
+                            className={classes.pos}
+                            color="textSecondary"
+                        >
+                            {props.data.rating.rating}
+                        </Typography>
+                    </>
+                )}
             </CardContent>
         </Card>
     );

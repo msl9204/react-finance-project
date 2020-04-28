@@ -6,7 +6,7 @@ import Axios from "axios";
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-var chart = new CanvasJS.Chart();
+var chart = new CanvasJS.Chart("chartjs");
 var dataPoints = [];
 
 const useStyles = makeStyles({
@@ -85,7 +85,11 @@ export default function StockHistory(props) {
 
     return (
         <Card className={classes.root}>
-            <CanvasJSChart options={options} onRef={(ref) => (chart = ref)} />
+            <CanvasJSChart
+                id="chartjs"
+                options={options}
+                onRef={(ref) => (chart = ref)}
+            />
             {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
         </Card>
     );

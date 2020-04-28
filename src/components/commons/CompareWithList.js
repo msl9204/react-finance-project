@@ -18,5 +18,3 @@ export default function CompareWithList() {
             }
         });
 }
-
-// TODO: action에서 async하게 받은 symbol을 이용해서 finnhub에서 최대한 정보 받은 후 store에 저장하기

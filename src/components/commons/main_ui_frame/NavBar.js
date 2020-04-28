@@ -2,12 +2,28 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
-import Button from "@material-ui/core/Button";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import InboxIcon from "@material-ui/icons/Inbox";
+import DraftsIcon from "@material-ui/icons/Drafts";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundColor: "#ede7f6",
+        backgroundColor: "#f2f2f2",
         height: "100vh",
+    },
+
+    list: {
+        width: "80%",
+        maxWidth: 360,
+        marginTop: "20px",
+    },
+
+    "list-item": {
+        marginBottom: "20px",
+        color: "black",
     },
 }));
 
@@ -23,56 +39,44 @@ export default function NavButtons() {
                 justify="space-evenly"
                 alignItems="center"
             >
-                <Grid
-                    item
-                    xs={12}
-                    sm={12}
-                    md={12}
-                    lg={12}
-                    style={{ marginTop: "50px" }}
+                <List
+                    className={classes.list}
+                    component="nav"
+                    aria-label="main mailbox folders"
                 >
                     <Link to="/" style={{ textDecoration: "none" }}>
-                        <Button
-                            size="large"
-                            variant="contained"
-                            color="primary"
-                        >
-                            Dashboard
-                        </Button>
+                        <ListItem button className={classes["list-item"]}>
+                            <ListItemIcon>
+                                <InboxIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Dashboard" />
+                        </ListItem>
                     </Link>
-                </Grid>
-                <Grid item xs={12} sm={12} md={12} lg={12}>
                     <Link to="/list" style={{ textDecoration: "none" }}>
-                        <Button
-                            size="large"
-                            variant="contained"
-                            color="primary"
-                        >
-                            Company List
-                        </Button>
+                        <ListItem button className={classes["list-item"]}>
+                            <ListItemIcon>
+                                <DraftsIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="CompanyList" />
+                        </ListItem>
                     </Link>
-                </Grid>
-                <Grid item xs={12} sm={12} md={12} lg={12}>
+
                     <Link to="/news" style={{ textDecoration: "none" }}>
-                        <Button
-                            size="large"
-                            variant="contained"
-                            color="primary"
-                        >
-                            News
-                        </Button>
+                        <ListItem button className={classes["list-item"]}>
+                            <ListItemIcon>
+                                <DraftsIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="News" />
+                        </ListItem>
                     </Link>
-                </Grid>
-                <Grid item xs={12} sm={12} md={12} lg={12}>
-                    <Button variant="outlined" color="primary">
-                        Disabled
-                    </Button>
-                </Grid>
-                <Grid item xs={12} sm={12} md={12} lg={12}>
-                    <Button variant="outlined" color="primary">
-                        Link
-                    </Button>
-                </Grid>
+
+                    <ListItem button className={classes["list-item"]}>
+                        <ListItemIcon>
+                            <DraftsIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Drafts" />
+                    </ListItem>
+                </List>
             </Grid>
         </div>
     );
