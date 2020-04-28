@@ -47,14 +47,7 @@ const useStyles = makeStyles({
 
 export default function KeyMetric(props) {
     const [Page, setPage] = useState(0);
-    const [MaxPage, setMaxPage] = useState(0);
     const classes = useStyles();
-
-    console.log(props);
-
-    // if (props.data.metrics) {
-    //     setMaxPage(props.data.metrics.length);
-    // }
 
     return (
         <Card className={classes.root}>
@@ -66,9 +59,12 @@ export default function KeyMetric(props) {
                             color="textSecondary"
                             gutterBottom
                         >
+                            KeyMetricInfo
+                        </Typography>
+                        <Typography>
                             Date : {props.data.metrics[Page].date}
                         </Typography>
-                        <Typography variant="h5" component="h2">
+                        <Typography variant="h6" component="h6">
                             ROE : {props.data.metrics[Page].ROE}
                         </Typography>
                         <Typography variant="h6" component="h6">
@@ -100,7 +96,7 @@ export default function KeyMetric(props) {
                         <IconButton
                             className={classes.next}
                             onClick={() => {
-                                if (Page !== MaxPage - 1) {
+                                if (Page !== props.data.metrics.length - 1) {
                                     setPage(Page + 1);
                                 }
                             }}

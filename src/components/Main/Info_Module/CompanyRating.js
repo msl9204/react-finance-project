@@ -39,7 +39,7 @@ export default function CompanyRating(props) {
                         >
                             Rating
                         </Typography>
-                        <Typography variant="h5" component="h2">
+                        <Typography variant="h6" component="h6">
                             recommendation :{props.data.rating.recommendation}
                         </Typography>
                         <Typography variant="h6" component="h6">

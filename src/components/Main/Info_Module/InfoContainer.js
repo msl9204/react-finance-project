@@ -1,15 +1,13 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
     root: {
-        width: "9vw",
-        height: "6vh",
+        marginTop: "20px",
+        minWidth: 275,
     },
     bullet: {
         display: "inline-block",
@@ -24,35 +22,38 @@ const useStyles = makeStyles({
     },
 });
 
-export default function RenderRelated() {
+export default function BasicInfo(props) {
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
 
     return (
-        <Card className={classes.root} variant="outlined">
+        <Card className={classes.root}>
             <CardContent>
                 <Typography
                     className={classes.title}
                     color="textSecondary"
                     gutterBottom
                 >
-                    Word of the Day
+                    {props.industry}
                 </Typography>
                 <Typography variant="h5" component="h2">
-                    be{bull}nev{bull}o{bull}lent
+                    {props.companyName}
+                </Typography>
+                <Typography variant="h6" component="h6">
+                    <span>
+                        <strong>{props.price}</strong>
+                    </span>
+                </Typography>
+                <Typography>
+                    {props.changes}
+                    {props.changesPercentage}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
-                    adjective
+                    {props.description}
                 </Typography>
                 <Typography variant="body2" component="p">
-                    well meaning and kindly.
-                    <br />
-                    {'"a benevolent smile"'}
+                    {props.sector}
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Button size="small">Learn More</Button>
-            </CardActions>
         </Card>
     );
 }

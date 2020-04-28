@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Grid from "@material-ui/core/Grid";
-import BasicInfo from "./InfoContainer";
-import StockHistory from "./StockHistory";
-import KeyMetric from "./KeyMetricContainer";
-import CompanyRating from "./CompanyRating";
-import RenderRelated from "./Related/RenderRelated";
+import BasicInfo from "./Info_Module/InfoContainer";
+import StockHistory from "./Stock_Module/StockHistory";
+import KeyMetric from "./Info_Module/KeyMetricContainer";
+import CompanyRating from "./Info_Module/CompanyRating";
+import RenderRelated from "./Related_Module/RenderRelated";
 
 import {
     getKeyMetric,
@@ -42,12 +42,6 @@ export default function SelectedCompany() {
         dispatch({ type: "ISCHANGE_TOFALSE" });
     }, [selected_company.symbol]);
 
-    // useEffect(() => {
-    //     dispatch(getKeyMetric(selected_company.symbol));
-    //     dispatch(getRating(selected_company.symbol));
-    //     dispatch(getRelatedSymbol(selected_company.symbol));
-    // }, [selected_company.symbol]);
-
     // symbol 받아오는거 까지 함. 받아온 props를 component로 주고 api call 한번 더 해서 리스트 띄워줘야함
 
     if (selected_company.profile) {
@@ -76,8 +70,8 @@ export default function SelectedCompany() {
                 </Grid>
 
                 <Grid item xs={2}>
-                    Related
-                    <RenderRelated />
+                    <strong>Related</strong>
+                    <RenderRelated data={selected_rel_symbol} />
                 </Grid>
             </>
         );

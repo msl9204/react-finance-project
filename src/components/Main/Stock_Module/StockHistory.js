@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CanvasJSReact from "../../assets/canvasjs.react";
+import CanvasJSReact from "../../../assets/canvasjs.react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Axios from "axios";

@@ -14,7 +14,7 @@ export default function CompareWithList() {
                 const infos = {
                     symbol: item.symbol,
                 };
-                dispatch(getInfo(infos));
+                return dispatch(getInfo(infos));
             }
         });
 }

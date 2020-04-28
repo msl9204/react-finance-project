@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Dashboard from "./components/Main/Dashboard";
+import Dashboard from "./components/Main/Info_Module/Dashboard";
 import RenderCompanyList from "./components/CompanyList/RenderCompanyList";
 import RenderNews from "./components/New/NewsData";
 

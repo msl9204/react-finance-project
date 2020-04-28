@@ -1,5 +1,23 @@
 import Axios from "axios";
 
+export function getRelatedInfo(value) {
+    if (value) {
+        const endpoint = `https://financialmodelingprep.com/api/v3/stock/real-time-price/${value}`;
+
+        const request = Axios.get(endpoint).then((response) => response.data);
+
+        return {
+            type: "SELECTED_REL_INFO",
+            payload: request,
+        };
+    } else {
+        return {
+            type: "SELECTED_REL_INFO",
+            payload: null,
+        };
+    }
+}
+
 export function getRelatedSymbol(symbol) {
     const endpoint = `https://finnhub.io/api/v1/stock/peers?symbol=${symbol}&token=bq8njs7rh5rc96c0jpt0`;
 

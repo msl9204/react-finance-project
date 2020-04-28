@@ -6,6 +6,7 @@ const initialState = {
         profile: undefined,
         selected_key_metric: undefined,
         selected_rating: undefined,
+        selected_rel_info: undefined,
     },
 };
 
@@ -38,6 +39,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 selected_rel_symbol: action.payload,
+            };
+        case "SELECTED_REL_INFO":
+            return {
+                ...state,
+                selected_rel_info: action.payload,
             };
 
         default:
