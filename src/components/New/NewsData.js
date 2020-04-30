@@ -4,11 +4,13 @@ import NewsBox from "./NewsBox";
 import renderMainFrame from "../commons/main_ui_frame/renderMainFrame";
 import { fetchNewsList } from "../../_actions/CompanyFetch_action";
 
-export default function RenderNews() {
+export default function NewsData(props) {
     const dispatch = useDispatch();
 
+    console.log(props.symbol);
+
     useEffect(() => {
-        dispatch(fetchNewsList());
+        dispatch(fetchNewsList(props.symbol));
     }, [dispatch]);
 
     const news_data = useSelector(

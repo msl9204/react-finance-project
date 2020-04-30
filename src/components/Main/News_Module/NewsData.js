@@ -3,18 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import RenderNews from "./RenderNews";
 import { fetchNewsList } from "../../../_actions/CompanyFetch_action";
 
-export default function NewsData() {
+export default function NewsData({ symbol }) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchNewsList());
-    }, [dispatch]);
+        dispatch(fetchNewsList(symbol));
+    }, [symbol]);
 
     const news_data = useSelector(
         (state) => state.company_news.company_news,
         []
     );
-
     return <RenderNews data={news_data} />;
 }
 

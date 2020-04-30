@@ -68,7 +68,7 @@ export default function SelectedCompany() {
 
                 <Grid item xs={6}>
                     <StockHistory symbol={selected_company.symbol} />
-                    <NewsData />
+                    <NewsData symbol={selected_company.symbol} />
                 </Grid>
 
                 <Grid item xs={2}>

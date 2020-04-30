@@ -86,14 +86,21 @@ export function fetchCompanyList() {
     };
 }
 
-export function fetchNewsList() {
-    const request = Axios.get(
-        "https://finnhub.io/api/v1/news?category=general&token=bq8njs7rh5rc96c0jpt0",
-        { json: true }
-    ).then((response) => response.data);
+export function fetchNewsList(symbol) {
+    if (symbol) {
+        const request = Axios.get(
+            `https://finnhub.io/api/v1/news/${symbol}?token=bq8njs7rh5rc96c0jpt0`,
+            { json: true }
+        ).then((response) => response.data);
 
-    return {
-        type: "COMPANY_NEWS",
-        payload: request,
-    };
+        return {
+            type: "COMPANY_NEWS",
+            payload: request,
+        };
+    } else {
+        return {
+            type: "COMPANY_NEWS",
+            payload: null,
+        };
+    }
 }
