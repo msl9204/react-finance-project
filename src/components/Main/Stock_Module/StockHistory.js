@@ -12,6 +12,7 @@ var dataPoints = [];
 const useStyles = makeStyles({
     root: {
         marginTop: "20px",
+        marginBottom: "20px",
         minWidth: 275,
     },
     bullet: {

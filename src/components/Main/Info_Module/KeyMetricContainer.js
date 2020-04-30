@@ -22,9 +22,6 @@ const useStyles = makeStyles({
     title: {
         fontSize: 14,
     },
-    pos: {
-        marginBottom: 12,
-    },
 
     prev: {
         height: 38,
@@ -61,25 +58,22 @@ export default function KeyMetric(props) {
                         >
                             KeyMetricInfo
                         </Typography>
-                        <Typography>
+                        <Typography variant="body1">
                             Date : {props.data.metrics[Page].date}
                         </Typography>
-                        <Typography variant="h6" component="h6">
+                        <Typography variant="body1">
                             ROE : {props.data.metrics[Page].ROE}
                         </Typography>
-                        <Typography variant="h6" component="h6">
+                        <Typography variant="body1">
                             Enterprise Value :
                             {props.data.metrics[Page]["Enterprise Value"]}
                         </Typography>
 
-                        <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                        >
+                        <Typography variant="body1">
                             Cash per Share:
                             {props.data.metrics[Page]["Cash per Share"]}
                         </Typography>
-                        <Typography variant="body2" component="p">
+                        <Typography variant="body1">
                             Debt to Equity:
                             {props.data.metrics[Page]["Debt to Equity"]}
                         </Typography>

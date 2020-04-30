@@ -40,13 +40,23 @@ export default function BasicInfo(props) {
                 </Typography>
                 <Typography variant="h6" component="h6">
                     <span>
-                        <strong>{props.price}</strong>
+                        <strong>{props.price} $</strong>
                     </span>
                 </Typography>
-                <Typography>
-                    {props.changes}
-                    {props.changesPercentage}
-                </Typography>
+
+                {props.changes > 0 && (
+                    <Typography style={{ color: "red" }}>
+                        +{props.changes}$&nbsp;
+                        {props.changesPercentage}
+                    </Typography>
+                )}
+                {props.changes < 0 && (
+                    <Typography style={{ color: "blue" }}>
+                        {props.changes}$&nbsp;
+                        {props.changesPercentage}
+                    </Typography>
+                )}
+
                 <Typography className={classes.pos} color="textSecondary">
                     {props.description}
                 </Typography>

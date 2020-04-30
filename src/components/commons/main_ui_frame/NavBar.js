@@ -74,7 +74,7 @@ export default function NavButtons() {
                         <ListItemIcon>
                             <DraftsIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Drafts" />
+                        <ListItemText primary="Favorites" />
                     </ListItem>
                 </List>
             </Grid>

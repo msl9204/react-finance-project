@@ -220,6 +220,12 @@ export default function UpperBar() {
                                                 );
                                             }
                                         }}
+                                        onChange={(event) => {
+                                            console.log(
+                                                "value : ",
+                                                event.target.value
+                                            );
+                                        }}
                                     />
                                 )}
                             />

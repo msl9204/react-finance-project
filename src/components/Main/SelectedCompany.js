@@ -6,6 +6,7 @@ import StockHistory from "./Stock_Module/StockHistory";
 import KeyMetric from "./Info_Module/KeyMetricContainer";
 import CompanyRating from "./Info_Module/CompanyRating";
 import RenderRelated from "./Related_Module/RenderRelated";
+import NewsData from "../Main/News_Module/NewsData";
 
 import {
     getKeyMetric,
@@ -46,7 +47,7 @@ export default function SelectedCompany() {
 
     if (selected_company.profile) {
         return (
-            <>
+            <React.Fragment>
                 <Grid id="infos" item xs={2}>
                     <BasicInfo
                         industry={selected_company.profile.industry}
@@ -67,15 +68,20 @@ export default function SelectedCompany() {
 
                 <Grid item xs={6}>
                     <StockHistory symbol={selected_company.symbol} />
+                    <NewsData />
                 </Grid>
 
                 <Grid item xs={2}>
                     <strong>Related</strong>
                     <RenderRelated data={selected_rel_symbol} />
                 </Grid>
-            </>
+            </React.Fragment>
         );
     }
 
-    return <div>선택해주세요</div>;
+    return (
+        <Grid item xs={10} style={{ backgroundColor: "#bdbdbd" }}>
+            선택해주세요
+        </Grid>
+    );
 }
