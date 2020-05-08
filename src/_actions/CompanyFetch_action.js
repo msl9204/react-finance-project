@@ -1,4 +1,9 @@
 import Axios from "axios";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const FINNHUB_TOKEN = process.env.REACT_APP_FINNHUB_TOKEN;
 
 export function getRelatedInfo(value) {
     if (value) {
@@ -19,7 +24,7 @@ export function getRelatedInfo(value) {
 }
 
 export function getRelatedSymbol(symbol) {
-    const endpoint = `https://finnhub.io/api/v1/stock/peers?symbol=${symbol}&token=bq8njs7rh5rc96c0jpt0`;
+    const endpoint = `https://finnhub.io/api/v1/stock/peers?symbol=${symbol}&token=${FINNHUB_TOKEN}`;
 
     const request = Axios.get(endpoint).then((response) => response.data);
 
@@ -76,7 +81,7 @@ export function getInfo(value) {
 
 export function fetchCompanyList() {
     const request = Axios.get(
-        "https://finnhub.io/api/v1/stock/symbol?exchange=US&token=bq8njs7rh5rc96c0jpt0",
+        `https://finnhub.io/api/v1/stock/symbol?exchange=US&token=${FINNHUB_TOKEN}`,
         { json: true }
     ).then((response) => response.data);
 
@@ -89,7 +94,7 @@ export function fetchCompanyList() {
 export function fetchNewsList(symbol) {
     if (symbol) {
         const request = Axios.get(
-            `https://finnhub.io/api/v1/news/${symbol}?token=bq8njs7rh5rc96c0jpt0`,
+            `https://finnhub.io/api/v1/company-news?symbol=${symbol}&token=${FINNHUB_TOKEN}`,
             { json: true }
         ).then((response) => response.data);
 
