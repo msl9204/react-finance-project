@@ -7,6 +7,7 @@ import KeyMetric from "./Info_Module/KeyMetricContainer";
 import CompanyRating from "./Info_Module/CompanyRating";
 import RenderRelated from "./Related_Module/RenderRelated";
 import NewsData from "../Main/News_Module/NewsData";
+import LoginPage from "../commons/LoginModule/LoginPage";
 
 import {
     getKeyMetric,
@@ -81,7 +82,7 @@ export default function SelectedCompany() {
 
     return (
         <Grid item xs={10} style={{ backgroundColor: "#bdbdbd" }}>
-            선택해주세요
+            <LoginPage />
         </Grid>
     );
 }
