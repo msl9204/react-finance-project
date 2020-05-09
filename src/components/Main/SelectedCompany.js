@@ -42,7 +42,7 @@ export default function SelectedCompany() {
         dispatch(getRelatedSymbol(selected_company.symbol));
 
         dispatch({ type: "ISCHANGE_TOFALSE" });
-    }, [selected_company.symbol]);
+    }, [selected_company.symbol, dispatch]);
 
     // symbol 받아오는거 까지 함. 받아온 props를 component로 주고 api call 한번 더 해서 리스트 띄워줘야함
 

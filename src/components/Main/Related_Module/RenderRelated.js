@@ -35,14 +35,14 @@ export default function RenderRelated(props) {
 
     useEffect(() => {
         dispatch(getRelatedInfo(text));
-    }, [text]);
+    }, [text, dispatch]);
 
     return (
         <Card className={classes.root} variant="outlined">
             <CardContent>
                 {selected_rel_info &&
                     selected_rel_info.companiesPriceList.map((item) => (
-                        <>
+                        <React.Fragment key={item.symbol}>
                             <Typography
                                 className={classes.title}
                                 color="textSecondary"
@@ -53,7 +53,7 @@ export default function RenderRelated(props) {
                             <Typography variant="body2" gutterBottom>
                                 {item.price}$
                             </Typography>
-                        </>
+                        </React.Fragment>
                     ))}
             </CardContent>
         </Card>

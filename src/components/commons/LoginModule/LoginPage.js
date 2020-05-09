@@ -62,39 +62,6 @@ export default function LoginPage() {
         setPassword(event.target.value);
     };
 
-    db.onAuthStateChanged(function (user) {
-        if (user) {
-            // User is signed in.
-            var displayName = user.displayName;
-            var email = user.email;
-            var emailVerified = user.emailVerified;
-            var photoURL = user.photoURL;
-            var isAnonymous = user.isAnonymous;
-            var uid = user.uid;
-            var providerData = user.providerData;
-
-            console.log(
-                displayName,
-                email,
-                emailVerified,
-                photoURL,
-                isAnonymous,
-                uid,
-                providerData
-            );
-            // ...
-        } else {
-            // User is signed out.
-            // ...
-        }
-    });
-
-    console.log(
-        sessionStorage.getItem(
-            "firebase:authUser:AIzaSyAWF2UBnPiJ8gMPIpautfdVHYwYs9o9z5E:[DEFAULT]"
-        )
-    );
-
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -127,8 +94,8 @@ export default function LoginPage() {
                             })
                             .catch(function (error) {
                                 // Handle Errors here.
-                                var errorCode = error.code;
-                                var errorMessage = error.message;
+                                // var errorCode = error.code;
+                                // var errorMessage = error.message;
                             });
                     }}
                 >

@@ -61,7 +61,7 @@ export default function StockHistory(props) {
                 chart.render();
             })
             .then(setisReload(1));
-    }, [props.symbol]);
+    }, [props.symbol, isReload]);
 
     var options = {
         // exportEnabled: true,

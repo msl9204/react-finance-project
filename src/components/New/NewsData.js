@@ -11,7 +11,7 @@ export default function NewsData(props) {
 
     useEffect(() => {
         dispatch(fetchNewsList(props.symbol));
-    }, [dispatch]);
+    }, [props.symbol, dispatch]);
 
     const news_data = useSelector(
         (state) => state.company_news.company_news,
