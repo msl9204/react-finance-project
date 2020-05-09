@@ -89,6 +89,12 @@ export default function LoginPage() {
         }
     });
 
+    console.log(
+        sessionStorage.getItem(
+            "firebase:authUser:AIzaSyAWF2UBnPiJ8gMPIpautfdVHYwYs9o9z5E:[DEFAULT]"
+        )
+    );
+
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
