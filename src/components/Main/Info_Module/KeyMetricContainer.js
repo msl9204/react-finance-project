@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
@@ -42,14 +43,16 @@ const useStyles = makeStyles({
     },
 });
 
-export default function KeyMetric(props) {
+export default function KeyMetric({ data }) {
     const [Page, setPage] = useState(0);
     const classes = useStyles();
+
+    console.log("data : ", data);
 
     return (
         <Card className={classes.root}>
             <CardContent>
-                {props.data.metrics && (
+                {data.metrics && (
                     <>
                         <Typography
                             className={classes.title}
@@ -59,23 +62,23 @@ export default function KeyMetric(props) {
                             KeyMetricInfo
                         </Typography>
                         <Typography variant="body1">
-                            Date : {props.data.metrics[Page].date}
+                            Date : {data.metrics[Page].date}
                         </Typography>
                         <Typography variant="body1">
-                            ROE : {props.data.metrics[Page].ROE}
+                            ROE : {data.metrics[Page].ROE}
                         </Typography>
                         <Typography variant="body1">
                             Enterprise Value :
-                            {props.data.metrics[Page]["Enterprise Value"]}
+                            {data.metrics[Page]["Enterprise Value"]}
                         </Typography>
 
                         <Typography variant="body1">
                             Cash per Share:
-                            {props.data.metrics[Page]["Cash per Share"]}
+                            {data.metrics[Page]["Cash per Share"]}
                         </Typography>
                         <Typography variant="body1">
                             Debt to Equity:
-                            {props.data.metrics[Page]["Debt to Equity"]}
+                            {data.metrics[Page]["Debt to Equity"]}
                         </Typography>
                         <IconButton
                             className={classes.prev}
@@ -90,7 +93,7 @@ export default function KeyMetric(props) {
                         <IconButton
                             className={classes.next}
                             onClick={() => {
-                                if (Page !== props.data.metrics.length - 1) {
+                                if (Page !== data.metrics.length - 1) {
                                     setPage(Page + 1);
                                 }
                             }}

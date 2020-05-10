@@ -24,13 +24,13 @@ const useStyles = makeStyles({
 
 // 왜 Destructuring 하면 에러날까??
 
-export default function CompanyRating(props) {
+export default function CompanyRating({ data }) {
     const classes = useStyles();
 
     return (
         <Card className={classes.root}>
             <CardContent>
-                {props.data.rating && (
+                {data.rating && (
                     <>
                         <Typography
                             className={classes.title}
@@ -40,17 +40,17 @@ export default function CompanyRating(props) {
                             Rating
                         </Typography>
                         <Typography variant="h6" component="h6">
-                            recommendation :{props.data.rating.recommendation}
+                            recommendation :{data.rating.recommendation}
                         </Typography>
                         <Typography variant="body1">
                             <strong>Score : </strong>
-                            {props.data.rating.score}
+                            {data.rating.score}
                         </Typography>
                         <Typography
                             className={classes.pos}
                             color="textSecondary"
                         >
-                            {props.data.rating.rating}
+                            {data.rating.rating}
                         </Typography>
                     </>
                 )}

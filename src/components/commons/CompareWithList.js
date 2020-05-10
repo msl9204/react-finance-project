@@ -16,7 +16,7 @@ export default function CompareWithList() {
                 };
                 return dispatch(getInfo(infos));
             } else {
-                return console.log("symbol list를 불러올 수 없습니다.");
+                return undefined;
             }
         });
 }

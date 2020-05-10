@@ -66,10 +66,9 @@ export function getSearchValue(value) {
     };
 }
 
-export function getInfo(value) {
+export function getInfo(symbol) {
     const endpoint =
-        "https://financialmodelingprep.com/api/v3/company/profile/" +
-        value.symbol;
+        "https://financialmodelingprep.com/api/v3/company/profile/" + symbol;
 
     const request = Axios.get(endpoint).then((response) => response.data);
 

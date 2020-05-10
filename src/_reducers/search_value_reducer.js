@@ -2,11 +2,11 @@ const initialState = {
     search_value: null,
     isChange: false,
     selected_value: {
-        symbol: undefined,
-        profile: undefined,
-        selected_key_metric: undefined,
-        selected_rating: undefined,
-        selected_rel_info: undefined,
+        symbol: null,
+        profile: null,
+        selected_key_metric: { matrics: [] },
+        selected_rating: null,
+        selected_rel_info: null,
     },
 };
 

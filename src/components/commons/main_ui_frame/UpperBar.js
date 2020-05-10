@@ -19,6 +19,7 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import GetCompanySymbol from "../../Main/GetCompanySymbol";
 import CompareWithList from "../CompareWithList";
+import { getInfo } from "../../../_actions/CompanyFetch_action";
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -86,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UpperBar() {
     GetCompanySymbol();
-    CompareWithList();
+
     const classes = useStyles();
     const dispatch = useDispatch();
     const getCompanyList = useSelector(
@@ -203,12 +204,17 @@ export default function UpperBar() {
                                     (option) => option.symbol
                                 )}
                                 onChange={(event) => {
-                                    dispatch(
-                                        getSearchValue(event.target.innerHTML)
-                                    );
+                                    if (event.target.innerHTML != "") {
+                                        dispatch(
+                                            getSearchValue(
+                                                event.target.innerHTML
+                                            )
+                                        );
+                                    }
                                 }}
                                 renderInput={(params) => (
                                     <TextField
+                                        placeholder="Type Something..."
                                         inputProps={{ "aria-label": "search" }}
                                         {...params}
                                         onKeyUp={(event) => {

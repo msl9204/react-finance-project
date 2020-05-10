@@ -6,21 +6,28 @@ import StockHistory from "./Stock_Module/StockHistory";
 import KeyMetric from "./Info_Module/KeyMetricContainer";
 import CompanyRating from "./Info_Module/CompanyRating";
 import RenderRelated from "./Related_Module/RenderRelated";
-import NewsData from "../Main/News_Module/NewsData";
-import LoginPage from "../commons/LoginModule/LoginPage";
-
+import RenderNews from "./News_Module/RenderNews";
+import WarnningBanner from "../commons/Warning/WarningBanner";
+import styled from "styled-components";
 import {
+    getInfo,
     getKeyMetric,
     getRating,
     getRelatedSymbol,
+    fetchNewsList,
 } from "../../_actions/CompanyFetch_action";
 
 // 지금 문제점 : symbol 선택안했음에도 이 컴포넌트가 실행되서, symbol 값이 있을 때, 이 컴포넌트가 작동하도록 추가 조건달아줘야함
 
-export default function SelectedCompany() {
+const StyledDiv = styled.div`
+    max-width: 75vw;
+    margin-bottom: 20px;
+`;
+
+export default function SelectedCompany({ companySymbol }) {
     const dispatch = useDispatch();
 
-    const selected_company = useSelector(
+    const selected_info = useSelector(
         (state) => state.search_value.selected_value
     );
 
@@ -36,53 +43,71 @@ export default function SelectedCompany() {
         (state) => state.search_value.selected_rel_symbol
     );
 
-    useEffect(() => {
-        dispatch(getKeyMetric(selected_company.symbol));
-        dispatch(getRating(selected_company.symbol));
-        dispatch(getRelatedSymbol(selected_company.symbol));
+    const selected_news_data = useSelector(
+        (state) => state.company_news.company_news
+    );
 
-        dispatch({ type: "ISCHANGE_TOFALSE" });
-    }, [selected_company.symbol, dispatch]);
+    useEffect(() => {
+        dispatch(getInfo(companySymbol));
+        dispatch(getKeyMetric(companySymbol));
+        dispatch(getRating(companySymbol));
+        dispatch(getRelatedSymbol(companySymbol));
+        dispatch(fetchNewsList(companySymbol));
+    }, [companySymbol]);
+
+    const ErrorMessage = () => {
+        return (
+            <StyledDiv>
+                <WarnningBanner />
+            </StyledDiv>
+        );
+    };
+
+    // TODO :: 에러메세지 component 유무에 따라 띄워주는거 만들기
 
     // symbol 받아오는거 까지 함. 받아온 props를 component로 주고 api call 한번 더 해서 리스트 띄워줘야함
 
-    if (selected_company.profile) {
-        return (
+    return (
+        <Grid item xs={10}>
             <React.Fragment>
-                <Grid id="infos" item xs={2}>
-                    <BasicInfo
-                        industry={selected_company.profile.industry}
-                        companyName={selected_company.profile.companyName}
-                        price={selected_company.profile.price}
-                        changes={selected_company.profile.changes}
-                        changesPercentage={
-                            selected_company.profile.changesPercentage
-                        }
-                        description={selected_company.profile.description}
-                        sector={selected_company.profile.sector}
-                    />
+                <ErrorMessage />
+            </React.Fragment>
 
-                    <KeyMetric data={selected_key_metric} />
+            <Grid container spacing={3}>
+                <Grid id="infos" item xs={3}>
+                    {selected_info.profile && (
+                        <BasicInfo
+                            industry={selected_info.profile.industry}
+                            companyName={selected_info.profile.companyName}
+                            price={selected_info.profile.price}
+                            changes={selected_info.profile.changes}
+                            changesPercentage={
+                                selected_info.profile.changesPercentage
+                            }
+                            description={selected_info.profile.description}
+                            sector={selected_info.profile.sector}
+                        />
+                    )}
 
-                    <CompanyRating data={selected_rating} />
+                    {selected_key_metric && (
+                        <KeyMetric data={selected_key_metric} />
+                    )}
+                    {selected_rating && (
+                        <CompanyRating data={selected_rating} />
+                    )}
                 </Grid>
 
-                <Grid item xs={6}>
-                    <StockHistory symbol={selected_company.symbol} />
-                    <NewsData symbol={selected_company.symbol} />
+                <Grid item xs={7}>
+                    <StockHistory symbol={companySymbol} />
+                    <RenderNews data={selected_news_data} />
                 </Grid>
-
                 <Grid item xs={2}>
                     <strong>Related</strong>
-                    <RenderRelated data={selected_rel_symbol} />
+                    {selected_rel_symbol && (
+                        <RenderRelated data={selected_rel_symbol} />
+                    )}
                 </Grid>
-            </React.Fragment>
-        );
-    }
-
-    return (
-        <Grid item xs={10} style={{ backgroundColor: "#bdbdbd" }}>
-            <LoginPage />
+            </Grid>
         </Grid>
     );
 }
