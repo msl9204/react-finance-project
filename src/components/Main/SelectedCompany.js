@@ -53,7 +53,7 @@ export default function SelectedCompany({ companySymbol }) {
         dispatch(getRating(companySymbol));
         dispatch(getRelatedSymbol(companySymbol));
         dispatch(fetchNewsList(companySymbol));
-    }, [companySymbol]);
+    }, [companySymbol, dispatch]);
 
     const ErrorMessage = () => {
         return (
@@ -65,13 +65,17 @@ export default function SelectedCompany({ companySymbol }) {
 
     // TODO :: 에러메세지 component 유무에 따라 띄워주는거 만들기
 
-    // symbol 받아오는거 까지 함. 받아온 props를 component로 주고 api call 한번 더 해서 리스트 띄워줘야함
-
     return (
         <Grid item xs={10}>
-            <React.Fragment>
-                <ErrorMessage />
-            </React.Fragment>
+            {(!selected_info.profile ||
+                !selected_key_metric ||
+                !selected_rating ||
+                !selected_news_data ||
+                !selected_rel_symbol) && (
+                <React.Fragment>
+                    <ErrorMessage />
+                </React.Fragment>
+            )}
 
             <Grid container spacing={3}>
                 <Grid id="infos" item xs={3}>
@@ -88,7 +92,6 @@ export default function SelectedCompany({ companySymbol }) {
                             sector={selected_info.profile.sector}
                         />
                     )}
-
                     {selected_key_metric && (
                         <KeyMetric data={selected_key_metric} />
                     )}
