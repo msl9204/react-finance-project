@@ -94,6 +94,8 @@ export default function UpperBar() {
         (state) => state.company_reducer.company_data
     );
 
+    const [InputSearch, setInputSearch] = React.useState("");
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -205,9 +207,12 @@ export default function UpperBar() {
                                 )}
                                 onChange={(event) => {
                                     if (
-                                        event.target.innerHTML !==
+                                        event.target.innerHTML ===
                                         `<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>`
                                     ) {
+                                        setInputSearch("");
+                                        dispatch(getSearchValue(""));
+                                    } else {
                                         dispatch(
                                             getSearchValue(
                                                 event.target.innerHTML
@@ -223,17 +228,12 @@ export default function UpperBar() {
                                         onKeyUp={(event) => {
                                             if (event.keyCode === 13) {
                                                 dispatch(
-                                                    getSearchValue(
-                                                        event.target.value
-                                                    )
+                                                    getSearchValue(InputSearch)
                                                 );
                                             }
                                         }}
                                         onChange={(event) => {
-                                            console.log(
-                                                "value : ",
-                                                event.target.value
-                                            );
+                                            setInputSearch(event.target.value);
                                         }}
                                     />
                                 )}

@@ -10,7 +10,7 @@ export default function Dashboard() {
         (state) => state.search_value.search_value
     );
 
-    if (selected_company) {
+    if (selected_company || !selected_company === "") {
         return renderMainFrame(
             <React.Fragment>
                 <SelectedCompany companySymbol={selected_company} />
