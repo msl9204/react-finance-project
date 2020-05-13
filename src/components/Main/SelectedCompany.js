@@ -55,26 +55,26 @@ export default function SelectedCompany({ companySymbol }) {
         dispatch(fetchNewsList(companySymbol));
     }, [companySymbol, dispatch]);
 
-    const ErrorMessage = () => {
-        return (
-            <StyledDiv>
-                <WarnningBanner />
-            </StyledDiv>
-        );
-    };
-
     // TODO :: 에러메세지 component 유무에 따라 띄워주는거 만들기
 
     return (
         <Grid item xs={10}>
-            {(!selected_info.profile ||
-                !selected_key_metric ||
-                !selected_rating ||
-                !selected_news_data ||
-                !selected_rel_symbol) && (
-                <React.Fragment>
-                    <ErrorMessage />
-                </React.Fragment>
+            {!selected_info.profile && (
+                <StyledDiv>
+                    <WarnningBanner />
+                </StyledDiv>
+            )}
+
+            {!selected_rating && (
+                <StyledDiv>
+                    <WarnningBanner message={"레이팅정보"} />
+                </StyledDiv>
+            )}
+
+            {!selected_news_data && (
+                <StyledDiv>
+                    <WarnningBanner message={"뉴스데이터"} />
+                </StyledDiv>
             )}
 
             <Grid container spacing={3}>

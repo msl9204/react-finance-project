@@ -5,6 +5,17 @@ dotenv.config();
 
 const FINNHUB_TOKEN = process.env.REACT_APP_FINNHUB_TOKEN;
 
+export function getMajorIndex() {
+    const endpoint = `https://financialmodelingprep.com/api/v3/majors-indexes`;
+
+    const request = Axios.get(endpoint).then((response) => response.data);
+
+    return {
+        type: "MAJOR_INDEX",
+        payload: request,
+    };
+}
+
 export function getRelatedInfo(value) {
     if (value) {
         const endpoint = `https://financialmodelingprep.com/api/v3/stock/real-time-price/${value}`;
@@ -93,7 +104,7 @@ export function fetchCompanyList() {
 export function fetchNewsList(symbol) {
     if (symbol) {
         const request = Axios.get(
-            `https://finnhub.io/api/v1/company-news?symbol=${symbol}&token=${FINNHUB_TOKEN}`,
+            `https://finnhub.io/api/v1/company-news?symbol=${symbol}&from=2020-04-30&to=2020-05-01&token=${FINNHUB_TOKEN}`,
             { json: true }
         ).then((response) => response.data);
 

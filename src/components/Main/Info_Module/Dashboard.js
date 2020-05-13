@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import SelectedCompany from "../SelectedCompany";
 import Grid from "@material-ui/core/Grid";
 import renderMainFrame from "../../commons/main_ui_frame/renderMainFrame";
-import LoginPage from "../../commons/LoginModule/LoginPage";
+import MajorIndex from "../../Main/MajorIndex_Module/MajorIndex";
 
 export default function Dashboard() {
     const selected_company = useSelector(
@@ -26,9 +26,11 @@ export default function Dashboard() {
                     borderRadius: "15px",
                     maxWidth: "82%",
                     maxHeight: "92vh",
+                    marginTop: "6px",
+                    position: "relative",
                 }}
             >
-                <LoginPage />
+                <MajorIndex />
             </Grid>
         );
     }

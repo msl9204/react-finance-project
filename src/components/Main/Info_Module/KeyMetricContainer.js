@@ -47,8 +47,6 @@ export default function KeyMetric({ data }) {
     const [Page, setPage] = useState(0);
     const classes = useStyles();
 
-    console.log("data : ", data);
-
     return (
         <Card className={classes.root}>
             <CardContent>
@@ -65,20 +63,37 @@ export default function KeyMetric({ data }) {
                             Date : {data.metrics[Page].date}
                         </Typography>
                         <Typography variant="body1">
-                            ROE : {data.metrics[Page].ROE}
+                            ROE :{parseFloat(data.metrics[Page].ROE).toFixed(3)}
                         </Typography>
                         <Typography variant="body1">
                             Enterprise Value :
-                            {data.metrics[Page]["Enterprise Value"]}
+                            {parseFloat(
+                                data.metrics[Page]["Enterprise Value"].split(
+                                    "E"
+                                )[0]
+                            ) *
+                                Math.pow(
+                                    10,
+                                    parseInt(
+                                        data.metrics[Page][
+                                            "Enterprise Value"
+                                        ].split("E")[1]
+                                    )
+                                )}{" "}
+                            원
                         </Typography>
 
                         <Typography variant="body1">
                             Cash per Share:
-                            {data.metrics[Page]["Cash per Share"]}
+                            {parseFloat(
+                                data.metrics[Page]["Cash per Share"]
+                            ).toFixed(3)}
                         </Typography>
                         <Typography variant="body1">
                             Debt to Equity:
-                            {data.metrics[Page]["Debt to Equity"]}
+                            {parseFloat(
+                                data.metrics[Page]["Debt to Equity"]
+                            ).toFixed(3)}
                         </Typography>
                         <IconButton
                             className={classes.prev}
