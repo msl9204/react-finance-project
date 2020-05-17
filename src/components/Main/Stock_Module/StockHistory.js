@@ -131,11 +131,19 @@ export default function StockHistory(props) {
                 >
                     <Button
                         onClick={() => {
-                            setButtonDate(BeforeDate(0, 0, 7));
+                            setButtonDate(BeforeDate(0, -1, 7));
                             dataPoints = [];
                         }}
                     >
                         1주일
+                    </Button>
+                    <Button
+                        onClick={() => {
+                            setButtonDate(BeforeDate(0, 0, 0));
+                            dataPoints = [];
+                        }}
+                    >
+                        1개월
                     </Button>
                     <Button
                         onClick={() => {

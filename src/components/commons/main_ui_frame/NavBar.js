@@ -7,7 +7,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/Inbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -52,30 +51,6 @@ export default function NavButtons() {
                             <ListItemText primary="Dashboard" />
                         </ListItem>
                     </Link>
-                    <Link to="/list" style={{ textDecoration: "none" }}>
-                        <ListItem button className={classes["list-item"]}>
-                            <ListItemIcon>
-                                <DraftsIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="CompanyList" />
-                        </ListItem>
-                    </Link>
-
-                    <Link to="/news" style={{ textDecoration: "none" }}>
-                        <ListItem button className={classes["list-item"]}>
-                            <ListItemIcon>
-                                <DraftsIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="News" />
-                        </ListItem>
-                    </Link>
-
-                    <ListItem button className={classes["list-item"]}>
-                        <ListItemIcon>
-                            <DraftsIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Favorites" />
-                    </ListItem>
                 </List>
             </Grid>
         </div>

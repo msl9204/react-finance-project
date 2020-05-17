@@ -56,14 +56,28 @@ export default function MajorIndex() {
                                 color="textSecondary"
                                 gutterBottom
                             >
-                                MajoyIndex
+                                MajorIndex
                             </Typography>
-                            <Typography variant="body1">
+                            <Typography variant="body2">
                                 {item.indexName}
                             </Typography>
-                            <Typography className={classes.pos} variant="body1">
-                                {item.price} {item.changes}
-                            </Typography>
+                            {item.changes > 0 ? (
+                                <Typography
+                                    className={classes.pos}
+                                    variant="body1"
+                                    style={{ color: "red" }}
+                                >
+                                    {item.price} (+{item.changes})&nbsp;
+                                </Typography>
+                            ) : (
+                                <Typography
+                                    className={classes.pos}
+                                    variant="body1"
+                                    style={{ color: "blue" }}
+                                >
+                                    {item.price} ({item.changes})&nbsp;
+                                </Typography>
+                            )}
                         </CardContent>
                     </Card>
                 ))}

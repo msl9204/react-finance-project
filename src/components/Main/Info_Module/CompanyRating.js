@@ -17,9 +17,6 @@ const useStyles = makeStyles({
     title: {
         fontSize: 14,
     },
-    pos: {
-        marginBottom: 12,
-    },
 });
 
 // 왜 Destructuring 하면 에러날까??
@@ -39,18 +36,14 @@ export default function CompanyRating({ data }) {
                         >
                             Rating
                         </Typography>
-                        <Typography variant="h6" component="h6">
-                            recommendation :{data.rating.recommendation}
+                        <Typography variant="h3">
+                            {data.rating.rating}
                         </Typography>
                         <Typography variant="body1">
-                            <strong>Score : </strong>
-                            {data.rating.score}
+                            Score : {data.rating.score}
                         </Typography>
-                        <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                        >
-                            {data.rating.rating}
+                        <Typography variant="body1">
+                            recommendation :{data.rating.recommendation}
                         </Typography>
                     </>
                 )}

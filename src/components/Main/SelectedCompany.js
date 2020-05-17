@@ -7,8 +7,6 @@ import KeyMetric from "./Info_Module/KeyMetricContainer";
 import CompanyRating from "./Info_Module/CompanyRating";
 import RenderRelated from "./Related_Module/RenderRelated";
 import RenderNews from "./News_Module/RenderNews";
-import WarnningBanner from "../commons/Warning/WarningBanner";
-import styled from "styled-components";
 import {
     getInfo,
     getKeyMetric,
@@ -18,11 +16,6 @@ import {
 } from "../../_actions/CompanyFetch_action";
 
 // 지금 문제점 : symbol 선택안했음에도 이 컴포넌트가 실행되서, symbol 값이 있을 때, 이 컴포넌트가 작동하도록 추가 조건달아줘야함
-
-const StyledDiv = styled.div`
-    max-width: 75vw;
-    margin-bottom: 20px;
-`;
 
 export default function SelectedCompany({ companySymbol }) {
     const dispatch = useDispatch();
@@ -59,24 +52,6 @@ export default function SelectedCompany({ companySymbol }) {
 
     return (
         <Grid item xs={10}>
-            {!selected_info.profile && (
-                <StyledDiv>
-                    <WarnningBanner />
-                </StyledDiv>
-            )}
-
-            {!selected_rating && (
-                <StyledDiv>
-                    <WarnningBanner message={"레이팅정보"} />
-                </StyledDiv>
-            )}
-
-            {!selected_news_data && (
-                <StyledDiv>
-                    <WarnningBanner message={"뉴스데이터"} />
-                </StyledDiv>
-            )}
-
             <Grid container spacing={3}>
                 <Grid id="infos" item xs={3}>
                     {selected_info.profile && (
